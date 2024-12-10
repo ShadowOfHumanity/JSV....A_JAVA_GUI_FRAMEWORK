@@ -6,7 +6,7 @@ public class MyJVXTemplate { // THIS IS A TEMPLATE ON HOW TO USE THIS.
 
         webFramework.setHtmlContent("""
         <div id='app'>
-            <h1>Welcome to the WebFramework!</h1>
+            <h1>Welcome to the JSV!</h1>
             <button id="animatedButton" onclick="buttonClicked()">Click Me!</button>
         </div>
         """);

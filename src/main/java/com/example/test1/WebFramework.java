@@ -100,13 +100,13 @@ public class WebFramework extends Application { // WELCOME TO THE WEBFRAMEWORK!
         this.bridgedMethods = new HashMap<>();
     }
 
-    public WebFramework setHtmlContent(String htmlContent) {
+    public WebFramework setHtmlContent(String htmlContent) { // AS EXPLAINED ; SETS HTML CONTENT OF THE WEB VIEW PANE
         LOGGER.info("Setting HTML Content: " + htmlContent);
         this.htmlContent = htmlContent;
         return this;
     }
 
-    public WebFramework setHtmlContentFromFile(String filePath) {
+    public WebFramework setHtmlContentFromFile(String filePath) { // AS EXPLAINED ; SETS HTML CONTENT OF THE WEB VIEW PANE FROM A FILE
         try {
             this.htmlContent = new String(Files.readAllBytes(Paths.get(filePath)));
             LOGGER.info("HTML Content from file: " + this.htmlContent);
@@ -116,13 +116,13 @@ public class WebFramework extends Application { // WELCOME TO THE WEBFRAMEWORK!
         return this;
     }
 
-    public WebFramework setCssContent(String cssContent) {
+    public WebFramework setCssContent(String cssContent) { // AS EXPLAINED ; SETS CSS CONTENT OF THE WEB VIEW PANE
         LOGGER.info("Setting CSS Content: " + cssContent);
         this.cssContent = cssContent;
         return this;
     }
 
-    public WebFramework setCssContentFromFile(String filePath) {
+    public WebFramework setCssContentFromFile(String filePath) { // AS EXPLAINED ; SETS CSS CONTENT OF THE WEB VIEW PANE FROM A FILE
         try {
             this.cssContent = new String(Files.readAllBytes(Paths.get(filePath)));
             LOGGER.info("CSS Content from file: " + this.cssContent);
@@ -132,13 +132,13 @@ public class WebFramework extends Application { // WELCOME TO THE WEBFRAMEWORK!
         return this;
     }
 
-    public WebFramework setJsContent(String jsContent) {
+    public WebFramework setJsContent(String jsContent) { // AS EXPLAINED ; SETS JS CONTENT OF THE WEB VIEW PANE
         LOGGER.info("Setting JS Content: " + jsContent);
         this.jsContent = jsContent;
         return this;
     }
 
-    public WebFramework setJsContentFromFile(String filePath) {
+    public WebFramework setJsContentFromFile(String filePath) { // AS EXPLAINED ; SETS JS CONTENT OF THE WEB VIEW PANE FROM A FILE
         try {
             this.jsContent = new String(Files.readAllBytes(Paths.get(filePath)));
             LOGGER.info("JS Content from file: " + this.jsContent);
@@ -148,27 +148,27 @@ public class WebFramework extends Application { // WELCOME TO THE WEBFRAMEWORK!
         return this;
     }
 
-    public WebFramework addBridgedMethod(String methodName, JavaMethodHandler handler) {
+    public WebFramework addBridgedMethod(String methodName, JavaMethodHandler handler) { // AS EXPLAINED ; ADDS A BRIDGED (JAVASCRIPT TO JAVA) METHOD TO THE WEB VIEW PANE
         bridgedMethods.put(methodName, handler);
         return this;
     }
 
-    public interface JavaMethodHandler {
+    public interface JavaMethodHandler { // AS EXPLAINED ; INTERFACE TO HANDLE THE METHODS THAT ARE CALLED FROM JAVASCRIPT, implemented from the JavaBridge class
         void execute(Object... args);
     }
 
-    private void prepareWebView() {
+    private void prepareWebView() { // AS EXPLAINED ; PREPARES THE WEB VIEW PANE
         webView = new WebView();
         webEngine = webView.getEngine();
 
-        String combinedContent = String.format(
+        String combinedContent = String.format( // formats the page with the css, html and js content
                 "<html><head><style>%s</style></head><body>%s<script>%s</script></body></html>",
                 cssContent != null ? cssContent : "",
                 htmlContent != null ? htmlContent : "",
                 jsContent != null ? jsContent : ""
         );
 
-        LOGGER.info("Combined Content: " + combinedContent);
+        LOGGER.info("Combined Content: " + combinedContent); // logs in red the combined content in output
 
         webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
             if (newState == Worker.State.SUCCEEDED) {
@@ -180,7 +180,7 @@ public class WebFramework extends Application { // WELCOME TO THE WEBFRAMEWORK!
         webEngine.loadContent(combinedContent);
     }
 
-    public class JavaBridge {
+    public class JavaBridge { // AS EXPLAINED ; BRIDGES THE JAVASCRIPT TO JAVA
         public void invokeMethod(String methodName, Object... args) {
             JavaMethodHandler handler = bridgedMethods.get(methodName);
             if (handler != null) {

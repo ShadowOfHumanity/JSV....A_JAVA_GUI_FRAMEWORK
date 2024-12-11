@@ -8,7 +8,7 @@ module com.example.test1 {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
+    //requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires jdk.jsobject;
     requires java.logging;

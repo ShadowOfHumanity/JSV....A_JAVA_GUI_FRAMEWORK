@@ -21,55 +21,55 @@ import java.util.logging.Logger;
 
 
 
- // WELCOME TO THE WEBFRAMEWORK!
-    // this framework combines JAVAFX, Java Libraries and JAVASCRIPT to create a powerful local web application.
-    // For future developers that dont understand what the below does,
-    //** DO NOT TOUCH THE BELOW CODE
-    // Stage is the main window of the application, while StackPane, a layout implements a stack; children in a single stack.
-    // Scene is container equivelent to JPANEL, hold all of your content.
-    //  Webview & WebEngine are the main components of the JavaFX web component. WebEngine controls WebView.
-    // -------------------------- CONSTRUCTOR AND IMPORTANT NOTES --------------------------------
-    //  The Constructor initializes the title, width, height and bridgedMethods.
-    //  bridgeMethods is a map that stores the methods that are coded in Javascript and then called in Java.
-    // ------------------------------------ METHODS ----------------------------------------------
-    //  SetHtmlContent, SetCssContent, SetJsContent, SetHtmlContentFromFile, SetCssContentFromFile,
-    //  SetJsContentFromFile, addBridgedMethod are methods that set the content of the webview.
-    // are all self explanitory! --> those which are from file read the content from the path of the file given.
-    // JavaMethodHandler is an interface that is used to handle the methods that are called from Javascript.
-    // the start and launch methods are used to start the application. simple as that!
-    //
-    // ------------------------------------ EXTRAS ----------------------------------------------
-    // Why is this important?
+// WELCOME TO THE WEBFRAMEWORK!
+// this framework combines JAVAFX, Java Libraries and JAVASCRIPT to create a powerful local web application.
+// For future developers that dont understand what the below does,
+//** DO NOT TOUCH THE BELOW CODE
+// Stage is the main window of the application, while StackPane, a layout implements a stack; children in a single stack.
+// Scene is container equivelent to JPANEL, hold all of your content.
+//  Webview & WebEngine are the main components of the JavaFX web component. WebEngine controls WebView.
+// -------------------------- CONSTRUCTOR AND IMPORTANT NOTES --------------------------------
+//  The Constructor initializes the title, width, height and bridgedMethods.
+//  bridgeMethods is a map that stores the methods that are coded in Javascript and then called in Java.
+// ------------------------------------ METHODS ----------------------------------------------
+//  SetHtmlContent, SetCssContent, SetJsContent, SetHtmlContentFromFile, SetCssContentFromFile,
+//  SetJsContentFromFile, addBridgedMethod are methods that set the content of the webview.
+// are all self explanitory! --> those which are from file read the content from the path of the file given.
+// JavaMethodHandler is an interface that is used to handle the methods that are called from Javascript.
+// the start and launch methods are used to start the application. simple as that!
+//
+// ------------------------------------ EXTRAS ----------------------------------------------
+// Why is this important?
 
-    // Well, Most people dont know how to write in FXML or XML, so this is a simple way to create a APP using
-    //  HTML with the perks of CSS & Javascript commands for those who dont know how to use Java!
-    //
-    //  How to use this?
+// Well, Most people dont know how to write in FXML or XML, so this is a simple way to create a APP using
+//  HTML with the perks of CSS & Javascript commands for those who dont know how to use Java!
+//
+//  How to use this?
 
-    //  1. Create a new instance of WebFramework
-    //  2. Set the HTML, CSS, JS content using the methods provided.
-    //  3. Add bridged methods that you want to call from Javascript.
-    //  4. Call the launch method to start the application.
-    //  5. Run the application and see the magic!
-    //
-    // Why did I make this?
+//  1. Create a new instance of WebFramework
+//  2. Set the HTML, CSS, JS content using the methods provided.
+//  3. Add bridged methods that you want to call from Javascript.
+//  4. Call the launch method to start the application.
+//  5. Run the application and see the magic!
+//
+// Why did I make this?
 
-    // Well, I noticed that i dont know how to use JavaFX, and JSwing is terrible to use to make custom UIs.
-    // So, I decided to make a simple way to create a UI using HTML, CSS and Javascript.
-    // As a result, I created this framework to help those who dont know how to use JavaFX to create a UI (Including myself).
-    //
-    //  What are the benefits of this?
+// Well, I noticed that i dont know how to use JavaFX, and JSwing is terrible to use to make custom UIs.
+// So, I decided to make a simple way to create a UI using HTML, CSS and Javascript.
+// As a result, I created this framework to help those who dont know how to use JavaFX to create a UI (Including myself).
+//
+//  What are the benefits of this?
 
-    // 1. You can use HTML, CSS and Javascript to create a UI.
-    // 2. You can use Java to handle the backend of the application.
-    // 3. You can use Java to handle the methods that are called from Javascript.
-    //
-    //  TODO:
-    //   1. FIX JAVASCRIPT --> JAVA FUNCTIONS, AS THEY DONT WORK.
-    //   2. FIX THE CODE TO MAKE IT MORE USER FRIENDLY AND OPTIMIZED
-    //
-    //
-    // **//
+// 1. You can use HTML, CSS and Javascript to create a UI.
+// 2. You can use Java to handle the backend of the application.
+// 3. You can use Java to handle the methods that are called from Javascript.
+//
+//  TODO:
+//   1. ADD MORE FEATURES TO THE FRAMEWORK
+//   2. FIX THE CODE TO MAKE IT MORE USER FRIENDLY AND OPTIMIZED
+//
+//
+// **//
 
 
 
@@ -91,7 +91,7 @@ public class WebFramework extends Application {
     private String jsContent;
 
     private Map<String, JavaMethodHandler> bridgedMethods;
-
+    //// CONSTRUCTORS
     public WebFramework() {
         this("WebApp", 800, 600);
 
@@ -102,20 +102,21 @@ public class WebFramework extends Application {
             }
         });
     }
-
+    //// CONSTRUCTORS
     public WebFramework(String title, int width, int height) {
         this.title = title;
         this.width = width;
         this.height = height;
         this.bridgedMethods = new HashMap<>();
     }
-
+    // Methods
+    // self explanitory
     public WebFramework setHtmlContent(String htmlContent) {
         LOGGER.info("Setting HTML Content: " + htmlContent);
         this.htmlContent = htmlContent;
         return this;
     }
-
+    // self explanitory
     public WebFramework setHtmlContentFromFile(String filePath) {
         try {
             this.htmlContent = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -125,13 +126,13 @@ public class WebFramework extends Application {
         }
         return this;
     }
-
+    // self explanitory
     public WebFramework setCssContent(String cssContent) {
         LOGGER.info("Setting CSS Content: " + cssContent);
         this.cssContent = cssContent;
         return this;
     }
-
+    //self explanitory
     public WebFramework setCssContentFromFile(String filePath) {
         try {
             this.cssContent = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -141,13 +142,13 @@ public class WebFramework extends Application {
         }
         return this;
     }
-
+    //self explanitory
     public WebFramework setJsContent(String jsContent) {
         LOGGER.info("Setting JS Content: " + jsContent);
         this.jsContent = jsContent;
         return this;
     }
-
+    //self explanitory
     public WebFramework setJsContentFromFile(String filePath) {
         try {
             this.jsContent = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -157,21 +158,21 @@ public class WebFramework extends Application {
         }
         return this;
     }
-
+    // Add bridged methods that you want to call from Javascript (JAVASCRIPT CALLS JAVA METHOD)
     public WebFramework addBridgedMethod(String methodName, JavaMethodHandler handler) {
         bridgedMethods.put(methodName, handler);
         return this;
     }
-
+    // Interface to handle the methods that are called from Javascript
     public interface JavaMethodHandler {
         void execute(Object... args);
     }
-
+    // self explanitory
     private void prepareWebView() {
         webView = new WebView();
         webEngine = webView.getEngine();
 
-        String combinedContent = String.format(
+        String combinedContent = String.format( //combines the content of the HTML, CSS and JS files
                 "<!DOCTYPE html><html><head><style>%s</style></head><body>%s<script>%s</script></body></html>",
                 cssContent != null ? cssContent : "",
                 htmlContent != null ? htmlContent : "",
@@ -181,13 +182,13 @@ public class WebFramework extends Application {
         LOGGER.info("Combined Content: " + combinedContent);
 
         webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
-            if (newState == Worker.State.SUCCEEDED) {
-                Platform.runLater(() -> {
+            if (newState == Worker.State.SUCCEEDED) { // if loaded
+                Platform.runLater(() -> { // run the bridged code when needed :
                     JSObject window = (JSObject) webEngine.executeScript("window");
                     window.setMember("java", new JavaBridge());
 
                     // Add console.log redirection to help with debugging
-                    webEngine.executeScript(
+                    webEngine.executeScript( //redirects console.log to java
                             "console.log = function(message) { " +
                                     "    java.invokeMethod('consoleLog', message);" +
                                     "};"
@@ -200,9 +201,9 @@ public class WebFramework extends Application {
     }
 
     public class JavaBridge {
-        public void invokeMethod(String methodName, Object... args) {
-            System.out.println("arg " + args);
-            System.out.println("Arguments: " + (args != null ? Arrays.toString(args) : "None"));
+        public void invokeMethod(String methodName, Object arg) { //invokes the method from JS to Java
+            System.out.println("Method called: " + methodName);
+            System.out.println("Argument: " + arg);
 
             JavaMethodHandler handler = bridgedMethods.get(methodName);
 
@@ -211,7 +212,7 @@ public class WebFramework extends Application {
                 try {
                     Platform.runLater(() -> {
                         try {
-                            handler.execute(args);
+                            handler.execute(new Object[]{arg}); // FIXED --> PARAMATERS NOW PASS!
                             System.out.println("Method executed successfully");
                         } catch (Exception e) {
                             System.err.println("Error executing method: " + e.getMessage());
@@ -253,6 +254,3 @@ public class WebFramework extends Application {
         });
     }
 }
-
-
-

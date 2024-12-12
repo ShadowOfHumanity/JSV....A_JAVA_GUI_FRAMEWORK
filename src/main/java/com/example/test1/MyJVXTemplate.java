@@ -78,12 +78,10 @@ public class MyJVXTemplate {
                         \s
                          try {
                              if (typeof java !== 'undefined' && typeof java.invokeMethod === 'function') {
-       
-                                 java.invokeMethod('testMethod');
-                                 java.invokeMethod('print', 'Button clicked!');
-                                 spawnRandomColorButton();
-                                 
-                                 
+                                spawnRandomColorButton();
+                                java.invokeMethod('CountButtons', document.getElementsByTagName('button').length); // Multiple arguments
+                              java.invokeMethod('ColoursUsed', Array.from(document.getElementsByTagName('button')).map(button => button.style.backgroundColor || window.getComputedStyle(button).backgroundColor)
+                                                                                                           );
                              }
                          } catch (error) {
                              console.log('Error invoking Java method: ' + error);
@@ -91,11 +89,16 @@ public class MyJVXTemplate {
                      }
                 """);
 
-        webFramework.addBridgedMethod("testMethod", (arg) -> {
-            System.out.println("Java method called from JS!");
+        webFramework.addBridgedMethod("CountButtons", (arguments) -> { // This is another example of dynamic method, that gets a parameter as well.
+            System.out.println("Counting buttons...");
+            System.out.println("Button count: " + arguments[0]);
         });
-        webFramework.addBridgedMethod("print", (arg) -> {
-            System.out.println("args: " + arg);
+
+        // For Multiple Paramaters :
+        webFramework.addBridgedMethod("ColoursUsed", (arguments) -> { // This is another example of dynamic method, that gets MULTIPLE parameter as well.
+            for (int i = 0; i < arguments.length; i++) {
+                System.out.println("Colour " + (i + 1) + ": " + arguments[i]);
+            }
         });
 
         webFramework.launch();
